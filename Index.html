@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Nombres</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #f8f9fa, #e0e0e0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contenedor {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      animation: entrada 0.1s ease;
+      text-align: center;
+    }
+
+    @keyframes entrada {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .mensaje {
+      color: green;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 20px;
+      animation: aparecer 0.2s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h2>Formulario de Registro</h2>
+
+    <form id="miFormulario">
+      <label for="primerNombre">Primer Nombre:</label>
+      <input type="text" id="primerNombre" name="primerNombre" required>
+
+      <label for="segundoNombre">Segundo Nombre:</label>
+      <input type="text" id="segundoNombre" name="segundoNombre">
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="mensaje" id="mensajeExito" style="display: none;"></div>
+  </div>
+
+  <script>
+    document.getElementById('miFormulario').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const segundoNombre = document.getElementById('segundoNombre').value.trim();
+      const mensajeDiv = document.getElementById('mensajeExito');
+      const form = document.getElementById('miFormulario');
+
+      if (segundoNombre === '') {
+        alert('Por favor, complete el segundo nombre.');
+        return;
+      }
+
+      // Oculta el formulario y muestra el mensaje
+      form.style.display = 'none';
+      mensajeDiv.textContent = 'Datos ingresados correctamente.';
+      mensajeDiv.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
